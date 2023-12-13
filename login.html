@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>UniShare Prijava</title>
+    <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+    <div class="okvir_za_prijavu">
+        <form action="">
+            <h1>Prijava</h1>
+            <div class="okvir_za_podatak">
+                <input type="text" placeholder="Korisničko ime" name="korisnicko_ime" id="korisnicko_ime" required />
+            </div>
+            <div class="okvir_za_podatak">
+                <input type="text" placeholder="Lozinka" name="lozinka" id="lozinka" required />
+            </div>
+            <button type="submit" onclick="autentifikacija()">Prijava</button>
+
+            <div>
+                <p>Nemaš račun? <a href="/UniShare/register.html">Registriraj se.</a></p>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="login-register.js"></script>
+
+    
+
+</body>
+</html>
