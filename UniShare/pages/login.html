@@ -8,7 +8,7 @@
 </head>
 <body>
         <div class="okvir_za_prijavu">
-            <form action="">
+            <form action="logiranje.php" method="post">
                 <h1>PRIJAVA</h1>
                 <div class="okvir_za_podatak">
                     <input type="text" placeholder="Korisničko ime" name="korisnicko_ime" id="korisnicko_ime" required />
@@ -16,9 +16,10 @@
                 <div class="okvir_za_podatak">
                     <input type="password" placeholder="Lozinka" name="lozinka" id="lozinka" required />
                 </div>
-                <button type="submit" onclick="autentifikacija()">Prijava</button>
+                <button type="submit">Prijava</button>
 
-                <div class="register-link"
+
+                <div class="register-link">
                     <p>Nemate račun? <a href="../pages/register.html">Registrirajte se.</a></p>
                 </div>
 
