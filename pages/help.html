@@ -4,9 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomoć</title>
-    <link rel="icon" type="image/x-icon" href="../img/svitlilogobezbg.png">
+    <link rel="stylesheet" type="text/css" href="../styles/materijalihub.css" />
+    <link rel="stylesheet" href="../styles/help.css" />
+    
+    
 </head>
 <body>
-    <p>Ode će pisat text</p>
+    
+    <header>
+        <img class="logo" src="../img/logoteksttamnapoz.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="materijalihub.html">MaterijaliHub</a></li>
+                <li><a href="chatroom.html">ChatRoom</a></li>
+                <li><a href="help.html">Pomoć</a></li>
+                <li><a href="profil.html">Profil</a></li>
+            </ul>
+        </nav>
+        <a class="odjava" href="logout.php"><button>Odjava</button></a>
+    </header>
+
+    <h1>Upute za korištenje </h1>
+<div class = "okvir" >
+    <img class="slika_uputstva" src="../img/Questions-bro.png">
+    <div class = "upute">
+    <div class = "uputa_detaljno">
+        <input type ="checkbox" class="trigger" id="trigger1">
+        <label class="uputstva_podnaslov" for="trigger1">Registracija</label>
+        <div class = "uputstva_objasnjenje">
+            <p>
+                <ul>
+                    <li>Kliknite na gumb "Registracija".</li>
+                    <li>Unesite mail svog AAI korisničkog računa te korisničko ime i lozinku po želji.</l1>
+                    <li>Nakon uspješne registracije bit ćete automatski prijavljeni u sustav.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <div class = "uputa_detaljno">
+        <input type ="checkbox" class="trigger" id="trigger2">
+        <label class="uputstva_podnaslov" for="trigger2">Prijava</label>
+        <div class = "uputstva_objasnjenje">
+            <p>
+                <ul>
+                    <li>Odaberite "Prijava" ili "Prijava kao administrator".</li>
+                    <li>Unesite e-mail/korisničko ime i lozinku vašeg postojećeg profila.</li>
+                </ul>                
+            </p>
+        </div>
+    </div>
+    <div class = "uputa_detaljno">
+        <input type ="checkbox" class="trigger" id="trigger3">
+        <label class="uputstva_podnaslov" for="trigger3">Brisanje korisničkog računa</label>
+        <div class = "uputstva_objasnjenje">
+            <p>
+                <ul>
+                    <li>U izborniku, odaberite opciju "Obriši račun".</li>
+                    <li>Kliknite na "Nastavi".</li></li>
+                </ul>                
+            </p>
+        </div>
+    </div>
+    </div> 
+</div>
 </body>
 </html>

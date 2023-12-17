@@ -1,0 +1,97 @@
+*{
+    font-family: "Poppins", sans-serif;
+    outline: none; 
+  }
+
+body {
+    width: 100%;
+    height: auto;
+    padding: 3%;
+}
+
+.slika_uputstva {
+    width: 100%;
+    max-width: 400px;
+    transform: rotate(-10deg);
+    padding: 3%;
+}
+.okvir {
+    display: flex;
+    justify-content: space-between;
+}
+.upute {
+    flex: 1;
+    min-width: 320px;
+    padding: 2% 0 4% 4%;
+    border-left: 1px solid rgb(255, 255, 255);
+}
+
+.uputa_detaljno {
+    width: 100%;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgb(175, 175, 222);
+}
+
+.uputstva_podnaslov {
+    display: block;
+    position: relative;
+    width: 100%;
+    color: #1daefa;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.2;
+    cursor: pointer;
+}
+
+.uputstva_podnaslov::after {
+    width: 10px;
+    height: 10px;
+    content: "";
+    float: right;
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    transform: rotate(135deg);
+    transition: 0.4s ease-in-out;
+}
+.uputstva_objasnjenje {
+    overflow: hidden;
+    max-height: 0px;
+    line-height: 1.5;
+    transition: 0.4s ease-in-out;
+    font-size: 14px;
+    letter-spacing: 1;
+}
+
+.trigger {
+    display: none;
+}
+
+.trigger:checked + .uputstva_podnaslov + .uputstva_objasnjenje  {
+    max-height: 500px;
+}
+/* .trigger:checked ~ .uputa_detaljno {
+    max-height: 300px; Prikaz teksta nakon klika 
+    transition: max-height 0.3s ease-in-out;
+} */
+
+.trigger:checked + .uputstva_podnaslov::after {
+    transform: rotate(-45deg);
+    transition: 0.4 ease-in-out;
+}
+
+  h1 {
+    color: #fff;
+    text-align: center;
+    margin: 40px 0;
+    font-size: 60px;
+    font-weight:bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+
+   
