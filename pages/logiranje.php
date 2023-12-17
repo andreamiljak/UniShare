@@ -22,7 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         // Authentication successful
         $_SESSION['korisnicko_ime'] = $korisnicko_ime;
-        header("Location: materijalihub.html"); // Redirect to a dashboard page
+        
+        $korisnicko_ime = $_POST['korisnicko_ime'];
+
+    // SQL query to fetch user_id based on username
+        $sql = "SELECT id FROM korisnici WHERE korisnicko_ime = '$korisnicko_ime'";
+    
+        $result = $conn->query($sql);
+    
+        if ($result->num_rows > 0) {
+        // Fetch the user_id from the result set
+            $row = $result->fetch_assoc();
+            $id = $row['id'];
+            $_SESSION['id'] = $id;
+        }
+        //echo '<script>alert("Session ID: ' . $_SESSION['id'] . '");</script>';
+        echo file_get_contents("materijalihub.html");
+
+        //header("Location: materijalihub.html"); // Redirect to a dashboard page
         exit();
     } else {
         // Authentication failed
