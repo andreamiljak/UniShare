@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         // Authentication successful
         $_SESSION['korisnicko_ime'] = $korisnicko_ime;
-        header("Location: naslovna.html"); // Redirect to a dashboard page
+        header("Location: materijalihub.html"); // Redirect to a dashboard page
         exit();
     } else {
         // Authentication failed
