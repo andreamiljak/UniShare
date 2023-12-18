@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomoć</title>
-    <link rel="stylesheet" type="text/css" href="../styles/materijalihub.css" />
-    <link rel="stylesheet" href="../styles/help.css" />
-    
-    
+    <title>CodingDung | Profile Template</title>
+    <link rel="stylesheet" href="../styles/profil.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../styles/materijalihub.css" />
+
 </head>
+
 <body>
-    
     <header>
         <img class="logo" src="../img/logoteksttamnapoz.png" alt="logo">
         <nav>
@@ -23,15 +24,82 @@
         </nav>
         <a class="odjava" href="logout.php"><button>Odjava</button></a>
     </header>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h1>MOJ PROFIL</h1>
 
-    <h1>Upute za korištenje </h1>
-<div class = "okvir" >
-    
-    <a class="izbrisi_profil" href="brisanje_profila.php"><button>Izbrisi profil.</button></a>
-    
-    
-    
-    </div> 
-</div>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">Moji podaci</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-change-password">Promijeni lozinku</a>
+                        <!-- <a class="izbornik_data" data-toggle="list"
+                            href="brisanje_profila.php"><button>Izbrisi profil.</button></a> -->
+                        <a class="izbrisi_profil" href="brisanje_profila.php"><button>Izbriši profil</button></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            <div class="card-body media align-items-center">
+                                <img src="../img/user.png" alt
+                                    class="d-block ui-w-80">
+                                <div class="media-body ml-4">
+                                    <label class="btn btn-outline-primary">
+                                        Promijeni sliku
+                                        <input type="file" class="account-settings-fileinput">
+                                    </label> &nbsp;
+                                    <button type="button" class="btn btn-default md-btn-flat">Spremi</button>
+                                </div>
+                            </div>
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Korisničko ime</label>
+                                    <input type="text" class="form-control mb-1" value="amilja">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Ime</label>
+                                    <input type="text" class="form-control" value="Andrea Miljak">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="text" class="form-control mb-1" value="amilja@mail.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-change-password">
+                            <div class="card-body pb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Trenutna lozinka</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Nova lozinka</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Ponovno upišite novu lozinku</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+            </div>
+        </div>
+        <div class="text-right mt-3">
+            <button type="button" class="btn btn-primary">Spremi promjene</button>&nbsp;
+            <button type="button" class="odustani_botun">Odustani</button>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </body>
+
 </html>

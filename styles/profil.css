@@ -1,0 +1,87 @@
+h1{
+    font-size: 26px !important;
+    font-family:'Times New Roman', Times, serif;
+    color: whitesmoke;
+    margin: 20px 50px;
+}
+.nav_links li a {
+    text-decoration: none; 
+}
+/*slika*/
+.ui-w-80 {
+    width : 80px;
+    height: auto;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow     : 9px 8px 9px  rgba(71, 85, 172, 0.779);
+}
+
+.row-bordered {
+    overflow: hidden;
+}  
+
+ button.btn.btn-primary {
+    padding: 9px 25px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    background-color: #229cde;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+}
+button.btn.btn-primary:hover
+{
+    background-color: #1b7db1;
+}
+
+label.btn.btn-outline-primary:hover, button.btn.btn-default.md-btn-flat:hover, button.odustani_botun:hover
+{
+
+    background-color: #99c6de;
+} 
+
+button.btn.btn-default.md-btn-flat, label.btn.btn-outline-primary, button.odustani_botun
+{
+    color: black;
+    padding: 9px 25px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: black;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.account-settings-fileinput {
+    position  : absolute;
+    visibility: hidden;
+    width     : 1px;
+    height    : 1px;
+    opacity   : 0;
+}
+
+.account-settings-links .list-group-item.active {
+    font-weight: bold;
+}
+
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+    background: transparent;
+}
+
+.light-style .account-settings-links .list-group-item.active {
+    color: #4E5155;
+}
+
+.light-style .account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03);
+}
