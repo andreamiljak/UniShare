@@ -2125,7 +2125,7 @@ textarea.w-input, textarea.w-select {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background-color: rgba(221, 221, 221, 0);
-  background-image: linear-gradient(315deg, rgba(0, 0, 0, .5) 5%, rgba(168, 141, 204, .5));
+  background-image: linear-gradient(315deg, rgba(0, 0, 0, .5) 5%, #229cde);
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -2153,7 +2153,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .navlink.contbtn {
-  background-color: #7e4fd8;
+  background-color: #229cde;
   margin-right: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -2207,7 +2207,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .login-btn {
-  color: #573399;
+  color: #229cde;
   background-color: #fff;
   border-radius: 15px;
   margin-top: 20px;
@@ -2220,7 +2220,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .text-span {
-  color: #7e4fd8;
+  color: #229cde;
 }
 
 .text-span-2 {
@@ -2228,7 +2228,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .materijalisec {
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 31%, #7e4fd8);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 31%, #229cde);
   margin-top: 60px;
   margin-bottom: 0;
   padding-top: 40px;
@@ -2236,7 +2236,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .chatsec {
-  background-image: linear-gradient(#7e4fd8 22%, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(#229cde 22%, rgba(255, 255, 255, 0));
   padding-top: 60px;
 }
 
