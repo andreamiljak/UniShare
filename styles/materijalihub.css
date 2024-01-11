@@ -6,6 +6,7 @@ body {
 li {
     text-decoration: none;
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -85,6 +86,11 @@ button:hover {
 h2 {
     width: 100%;
     padding: 15px 15px; 
+}
+
+h2 .path {
+    font-size: 1em;
+    font-weight: bold; 
 }
 
 /*h2 a {

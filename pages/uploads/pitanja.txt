@@ -1,0 +1,71 @@
+PRAKTIKUM 
+
+1. kolokvij
+- U CEMU SE MIRI NAPON - V joj
+- Zasto je važno znat napon koljena diode - napon treba biti veci od napona koljena da bi dioda provela
+- Za koje vrijednosti struja radi zenerova dioda - od Imin do Imax
+- Kako radi zenerova dioda u sklopu za stabilizaciju
+- Po kojem kriteriju se bira zenerova dioda - po probojnom naponu
+- Kako radi propusno polarizirana dioda - provodi struju, myb obj graf ?
+- Razlika između zener i obične, šta koja radi - zener radi samo kad neprop pol, obicna u obe pol, ....
+- Razlika u skopovima, ispravljsci i onaj drugi sad se nmg sjetit kako se zove (stabilizacijski?)
+- Pa mi pokaze neki skop i pita koji je to kako se zove
+- u skripti, graf, Si i Ge, drukciji graf, razl napon koljena, neka lakse vodi
+- graf diode, di je nes na muli idk
+- pricat sta smo radili/mirili
+- diode, obina zener, primjene,
+- ogranicavac, stabilizacija, ispravljacko djelovanje sta se dogada sa stujuom (ako istosjmerni struja ne minja smjer, samo kad se minja polaritet)
+
+2. kolokvij
+- bipolarni koja je uloga 
+++pojacavaci el napona i struje i funkcija sklopke
+- kako stavit tranz da radi ka pojacalo (koje radno podrucje, koji napon (baza-emiter, baza-kolektor, istosmjerni))
+
+- cemu sluze bipolarni, cemu unipolarni 
+++bipolarni pojacavaju: ZE - napon i stuja, ZB-napon, ZK-struju, unipolarni pojacavaju: samo napon
+- sta je alfa, sta je beta, koliki mogu betu
+++omjer izl i ul struje,
+++alfa - faktor stujnog pojacanja u spoju ZB, uvik manji od 1
+++beta - faktor strujnog pojacanja u spoju ZE, približno kreće u granicama 20-200
+- relacija beta i alfa, kako povezane, formula, obj kad jedna veca kakva druga
+++beta=alfa/(1-alfa)
+++alfa=beta/(1+beta)
+++ sta je alfa bliza 1 to je veći beta (jer je veca izl struja Ic)
+- kako se zovu faktori kod unipolarne tranz, cemu je jednaka strmina
+++strmina gm - omjer promjene struje odvoda ID izazvane promjenom napona između upravljačke elektrode (G) i uvoda (S) UGS uz konst napon UDS
+- presjek n-kanalnog FETa, zasto prikljucujemo Ugs, kako utjece na struju 
+++prosiruje ili smanjuje kanala, suzen > manje el > manja struja i obrnuto
+++povecanjem napon nepropusne polarizacije ugs barijere postaju sve sire tako da kod nekog određenog napona  dolazi do dodira barijera
+Napon Ugs di je sirina kanala 0 > napon dodira Ugs0
+Ugs = 0 > max struja
+- Uds? (ako je + na D privlaci el iz n-kanala pa tece struja)
+++ 
+- zas je struja Is = ID
+++jer su to iste struje
+
+
+
+ostali:
+- sta se mirilo u nekoj zadnjoj vjezbi sta su radili (ul i izl napon i pojacanje)
+- frekvencijske karakteristike 52. str, nes zas se smanjuje pov frek (zbg kond?)
+- 52. str, slika 5.4, sta je A (pojacanje)
+- Usporedi pojacalo sa ZS, ZC i operacijsko pojacalo, sto pojacavaju, jesu u fazi/protufazi!!!
+- kakav sklop OP (integrirani), od cega se sastoji (...komponenti), pojacava napon
+- sta je emitersko slijedilo, zas se tako zove
+- sta radi bipolarni u spoju ZK (povecava struju, al se u praksi koristi za trans otpora/impendancije s visoke na nisku)
+- sta radi ZS, zaj uvod (povecava napon), zas ne povecava struju?
+- tablice na 69. str
+- 71.str, FET, slika 7.1
+- kako znamo jel invertirani/neivertirani 91.str, slika 8.9, gf ul sig je spojen na minus pa invertirani, od cega se sastoji, povratne veze, b2 triba uzemljen
+- sta je naponsko pojacanje ZS, ZC OP, kakvo je di
+- razl idealnog OP i  invertirajuceg OP (kad pita koje je, i naglasavat kad pricas o kojem pricas)
+- Usporedi pojacalo sa ZS, ZC i operacijsko pojacalo, Sto pojacavaju
+- Gornja, donja frekvencija
+- Sto uvjetuje pojacanje operacijskog pojacala
+- sumator
+- sta smo mirili na satu (ul i izl napon, napon pojacanje, frek)
+- u zadnjem zad, zas je gornja gran frek veca od 250kHz, nismo mogli ocitat (jer generator nemoze dat vise od 250kHz)
+- N-kanalni FET, Is u koji smjer, (JFET moze povecavat napon, dae P kanal struje obrnute)
+
+
+

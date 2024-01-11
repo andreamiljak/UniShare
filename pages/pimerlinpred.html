@@ -25,12 +25,45 @@
 
 		<main>
             <div class="folderi">
-                <h2>Računarstvo > 6. Semestar > Programsko Inžinjerstvo > S Merlina > Predavanja</h2>
+                <!--putanja-->
+                <h2><a class="path" href="materijalihub.html">Računarstvo</a> > <a class="path" href="semestar5.html">5. Semestar</a> > 
+                    <a class="path" href="proginzinjerstvo.html">Programsko Inžinjerstvo</a> > <a class="path" href="pimerlin.html">S Merlina</a> > 
+                    <a class="path" href="pimerlinpred.html">Predavanja</a>
+                </h2>
+                <!--folderi tj. fileovi-->
                 <div class="folder">
-                    <img class="folder-ikona" src="../img/bluefile.png" >
+                    <a href="../file/01_Uvod u programsko inženjerstvo_2021.pdf"><img class="folder-ikona" src="../img/pdficon.png"></a>
                     <p class="folder-txt">Lekcija</p>
                 </div>
+                
+                <!--container gdje se prikazuju uploadani fileovi-->
+                <div id="uploadedFileContainer"></div> 
+                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                    <!--button za odabrati dat, po potrebi dotati jos ekstenzija-->
+                    <input type="file" name="file" id="fileInput" accept=".pdf, .docx, .txt, .jpg, .jpeg, .png, .gif">
+                    <!--button za upload-->
+                    <input type="button" value="Upload" onclick="uploadFile()">
+                </form>
             </div>
+            
+            <script>
+                function uploadFile() {
+                    var formData = new FormData(document.getElementById('uploadForm'));
+            
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            // Ovdje možete manipulirati odgovorom ako je potrebno
+                            var response = xhr.responseText;
+                            document.getElementById("uploadedFileContainer").innerHTML = response;
+                        }
+                    };
+            
+                    xhr.open('POST', 'upload.php', true);
+                    xhr.send(formData);
+                }
+            </script>
+
 		</main>
 
 		<footer id="page-footer">UniShare</footer>
