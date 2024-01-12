@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if file already exists
     if (file_exists($uploadedFile)) {
-        echo "Sorry, file already exists.<br/>";
+        echo "Sorry, file already exists. ";
         $uploadOk = 0;
     }
 
