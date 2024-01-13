@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploadDir = 'uploads/'; //putanja gdje se spremaju dokumenti
 
@@ -36,12 +38,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Sve je u redu, pohranite datoteku
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
+            // Pohrana informacija u bazu podataka
+            $filename = basename($_FILES['file']['name']);
+            $fileType = $fileType;
+            $filepath = $uploadedFile;
+
+            $conn = new mysqli('localhost', 'root', '', 'login-register');
+
+            if ($conn->connect_error) {
+                die('Connection failed: ' . $conn->connect_error);
+            }
+
+            $sql = "INSERT INTO uploaded_files (filename, filetype, ocjena, filepath) VALUES ('$filename', '$fileType', 0, '$filepath')";
+            $conn->query($sql);
+
+            $conn->close();
+
             // Prikaz uploadane datoteke na stranici (s ikonom i linkom)
             echo '<div>';
             echo '<a href="' . $uploadedFile . '" target="_blank"><img src="../img/pdficon.png" alt="File Icon"> <br>' . basename($_FILES['file']['name']); '</a>';
             echo '</div>';
         } else {
-            echo 'Error uploading file: ' . $_FILES['file']['error'];
+            echo 'Error uploading file: ' . $_FILES['file']['error'] . '<br>';
+            echo 'Error in MySQL query: ' . $sql . '<br>' . $conn->error;
         }
     }
 }

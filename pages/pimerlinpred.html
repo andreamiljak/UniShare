@@ -26,8 +26,10 @@
 		<main>
             <div class="folderi">
                 <!--putanja-->
-                <h2><a class="path" href="materijalihub.html">Računarstvo</a> > <a class="path" href="semestar5.html">5. Semestar</a> > 
-                    <a class="path" href="proginzinjerstvo.html">Programsko Inžinjerstvo</a> > <a class="path" href="pimerlin.html">S Merlina</a> > 
+                <h2><a class="path" href="materijalihub.html">Računarstvo</a> > 
+                    <a class="path" href="semestar5.html">5. Semestar</a> > 
+                    <a class="path" href="proginzinjerstvo.html">Programsko Inžinjerstvo</a> > 
+                    <a class="path" href="pimerlin.html">S Merlina</a> > 
                     <a class="path" href="pimerlinpred.html">Predavanja</a>
                 </h2>
                 <!--folderi tj. fileovi-->
@@ -78,6 +80,31 @@
                     xhr.open('POST', 'upload.php', true);
                     xhr.send(formData);
                 }
+            </script>
+
+            <script>
+                function displayUploadedFiles() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var response = JSON.parse(xhr.responseText);
+
+                            // Prikaz ikona na stranici
+                            var container = document.getElementById("uploadedFileContainer");
+                            response.forEach(function (file) {
+                                var icon = document.createElement("div");
+                                icon.innerHTML = '<img src="../img/pdficon.png" alt="File Icon"><br>' + file.filename;
+                                container.appendChild(icon);
+                            });
+                        }
+                    };
+
+                    xhr.open('GET', 'get_uploaded_files.php', true);
+                    xhr.send();
+                }
+
+                // Poziv funkcije pri ponovnom učitavanju stranice
+                window.onload = displayUploadedFiles;
             </script>
 
 		</main>
