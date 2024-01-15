@@ -1,95 +1,159 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-  body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-image: url('../img/pozadina4.jpeg');
-    background-size: cover;
-    background-position: center;
-  }
-.okvir_za_prijavu {
-    width: 420px;
-    background-color:  rgba(60,164,219, 0.1);
-    border: 1px solid rgb(6, 6, 40);
-    backdrop-filter: blur(6px);
-    color: #fff;
-    border-radius: 12px;
-    padding: 30px 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../img/pozadina4.jpeg');
+  background-size: cover;
+  background-position: center;
 }
 
 .okvir_za_prijavu {
-    justify-content: center;
-    align-items: center;
+  width: 420px;
+  background-color: rgba(60, 164, 219, 0.1);
+  border: 1px solid rgb(6, 6, 40);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h1{
-    color:rgb(232, 234, 224);
-    font: optional;
-    font-size: 25px;
-    text-align: center;
+.okvir_za_prijavu {
+  justify-content: center;
+  align-items: center;
+}
 
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.custom-dropdown label {
+  color: rgb(232, 234, 224);
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-dropdown-select {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+.custom-dropdown-select, #facultySelect {
+  color:rgba(232, 234, 224, 0.7) !important;
+  font-family: "Poppins", sans-serif;
+  padding: 20px 45px 20px 20px;
+  font-size:16px;
+  }
+
+.custom-dropdown-options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  z-index: 1;
+}
+
+.custom-dropdown-options a {
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s;
+}
+
+.custom-dropdown-options a:hover {
+  background-color: #f5f5f5;
+}
+
+.light-text {
+  color: rgba(232, 234, 224, 0.7);
+}
+
+h1 {
+  color: rgb(232, 234, 224);
+  font: optional;
+  font-size: 25px;
+  text-align: center;
 }
 
 .okvir_za_prijavu .okvir_za_podatak {
-    position: relative;
-    width: 100%;
-    height: 50px;
-
-    margin: 30px 0;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
 }
 
-.okvir_za_podatak input{
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px;
-    font-size: 16px;
-    color: #fff;
-    padding: 20px 45px 20px 20px;
-  }
-
-  .okvir_za_podatak input::placeholder{
-    color: rgb(232, 234, 224);
-  }
-
-
-.okvir_za_prijavu button{
-    width: 50%;
-    height: 30px;
-    background: #fff;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  
-.okvir_za_prijavu button:hover{
-    background-color: #79acc7;
+.okvir_za_podatak input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
 }
 
-  .register-link a{
-    color: #229cde;
-    text-decoration: none;
-  }
-  .register-link a:hover {
-    color: #1a74a5;
-  }
+.okvir_za_podatak input::placeholder {
+  color: rgb(232, 234, 224);
+}
+
+
+.okvir_za_prijavu button {
+  width: 50%;
+  height: 30px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.okvir_za_prijavu button:hover {
+  background-color: #79acc7;
+}
+
+.register-link a {
+  color: #229cde;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  color: #1a74a5;
+}

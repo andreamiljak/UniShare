@@ -6,6 +6,7 @@
     <title>UniShare Registracija</title>
     <link rel="icon" type="image/x-icon" href="../img/svitlilogobezbg.png">
     <link rel="stylesheet" href="../styles/login.css" />
+   
 </head>
 <body>
     <div class="okvir_za_prijavu">
@@ -20,14 +21,144 @@
             <div class="okvir_za_podatak">
                 <input type="password" placeholder="Lozinka" name="lozinka" required />
             </div>
+            <div class="custom-dropdown" id="facultyDropdown">
+                <label>Fakultet:</label>
+                <div class="custom-dropdown-select" id="facultySelect">Odaberi fakultet</div>
+                <div class="custom-dropdown-options" id="facultyOptions">
+                    <a href="#" data-majors="Računarstvo, Strojarstvo, Brodogradnja, Elektrotehnika">Fakultet elektrotehnike, strojarstva i brodogradnje Split</a>
+                    <a href="#" data-majors="Matematika, Informatika, Fizika">Prirodoslovno-matematički fakultet Split</a>
+                    
+                </div>
+            </div>
+
+            <div class="custom-dropdown" id="majorDropdown">
+                <label>Smjer:</label>
+                <div class="custom-dropdown-select" id="majorSelect">Odaberi smjer</div>
+                <div class="custom-dropdown-options" id="majorOptions">
+                </div>
+            </div>
+            
             <button type="submit">Registriraj se</button>
-
-
         </form>
-
-
-
     </div>
 
+    <script>
+        function initializeDropdown(dropdownId, selectId, optionsId) {
+            const dropdown = document.getElementById(dropdownId);
+            const select = document.getElementById(selectId);
+            const options = document.getElementById(optionsId);
+
+            select.addEventListener("click", function () {
+                options.style.display = options.style.display === "block" ? "none" : "block";
+            });
+
+            options.addEventListener("click", function (event) {
+                if (event.target.tagName === "A") {
+                    const majorsData = event.target.getAttribute("data-majors");
+                    const majors = majorsData ? majorsData.split(', ') : [];
+                    populateMajorOptions(majors);
+                    select.textContent = event.target.textContent;
+                    options.style.display = "none";
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (!dropdown.contains(event.target)) {
+                    options.style.display = "none";
+                }
+            });
+        }
+
+        function populateMajorOptions(majors) {
+            const majorOptions = document.getElementById("majorOptions");
+            majorOptions.innerHTML = "";
+            majors.forEach(major => {
+                const option = document.createElement("a");
+                option.href = "#";
+                option.textContent = major;
+                option.addEventListener("click", function () {
+                    document.getElementById("majorSelect").textContent = major;
+                    document.getElementById("majorOptions").style.display = "none";
+                });
+                majorOptions.appendChild(option);
+            });
+        }
+        initializeDropdown("facultyDropdown", "facultySelect", "facultyOptions");
+        initializeDropdown("majorDropdown", "majorSelect", "majorOptions");
+    </script>
+<script>
+	
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+</script>
+</body>
+<script>
+	
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+
+</script>
 </body>
 </html>
