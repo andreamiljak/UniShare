@@ -8,6 +8,10 @@
     <link rel="icon" type="image/x-icon" href="../img/svitlilogobezbg.png">
     <link rel="icon" type="image/x-icon" href="../img/logoo.png">
     <link rel="stylesheet" type="text/css" href="../styles/materijalihub.css" />
+    <link rel="stylesheet" type="text/css" href ="../styles/comments.css"/>
+    <link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body>
     <header>
@@ -48,16 +52,43 @@
             
             <!--PREVIEW-->
             <div class="preview-file" id="previewFile">
-                <button id="closeBtn">Close</button>
+                <button id="closeBtn">Zatvori</button>
+                <div class="comments-container">
                 <h3>ime datoteke</h3>
-                <p>21.5.2023</p>
                 <div>
-                    ocjena
+                    <p>21.5.2023</p>
+                    <p>Prosječna ocjena:</p>
+                    Ocijeni:
+                    <div class="star-container">
+                            <i class="fa fa-star-o star-icon"></i>
+                            <i class="fa fa-star-o star-icon"></i>
+                            <i class="fa fa-star-o star-icon"></i>
+                            <i class="fa fa-star-o star-icon"></i>
+                            <i class="fa fa-star-o star-icon"></i>
+                    </div>
+                </div></div>
+                <div class="comments-container">
+                    <div class = "comments-naslov">
+                        <h1>Komentari</h1>
+                    </div>
+                    <div> Broj komentara: <span id="comment">0</span></div>
+                    <div class="comments"></div>
+                    <div class="commentbox">
+                        <div class="content">
+                            <h2 class="komentiraj">Komentiraj kao: </h2>
+                            <input type="text" value="Anonymous" class="user">
+
+                            <div class="commentinput">
+                                <input type="text" placeholder="Unesi komentar" class="usercomment">
+                                <div class="buttons">
+                                    <button type="submit" disabled id="publish">Objavi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    komentari
-                </div>
-            </div>
+
+            
 
            
             <script src="../scripts/files.js"></script>
@@ -74,14 +105,109 @@
                             document.getElementById("uploadedFileContainer").innerHTML = response;
                         }
                     };
-            
+                    
                     xhr.open('POST', 'upload.php', true);
                     xhr.send(formData);
                 }
+                
+
+const USERID = {
+    name: null,
+    identity: null,
+    image: null,
+    message: null,
+    date: null
+}
+
+const userComment = document.querySelector(".usercomment");
+const publishBtn = document.querySelector("#publish");
+const comments = document.querySelector(".comments");
+const userName = document.querySelector(".user");
+// const notify = document.querySelector(".notifyinput");
+
+    userComment.addEventListener("input", e => {
+        if(!userComment.value) {
+            publishBtn.setAttribute("disabled", "disabled");
+            publishBtn.classList.remove("abled")
+        }else {
+            publishBtn.removeAttribute("disabled");
+            publishBtn.classList.add("abled")
+        }
+    })
+
+    function addPost() {
+        if(!userComment.value) return;
+        USERID.name = userName.value;
+        if(USERID.name === "Anonymous") {
+            USERID.identity = false;
+            USERID.image = "../img/user.png";
+        }else {
+            USERID.identity = true;
+            USERID.image = "../img/user.png"
+        }
+
+        USERID.message = userComment.value;
+        USERID.date = new Date().toLocaleString();
+        let published = 
+        `<div class="parents">
+            <img src="${USERID.image}">
+            <div>
+                <h1>${USERID.name}</h1>
+                <p>${USERID.message}</p>
+                <div class="engagements"><img src="../img/like.png" id="likeIcon">
+                <span class="date">${USERID.date}</span>
+            </div>    
+        </div>`
+        
+
+        comments.innerHTML += published;
+        userComment.value = "";
+        publishBtn.classList.remove("abled")
+
+        let commentsNum = document.querySelectorAll(".parents").length;
+        document.getElementById("comment").textContent = commentsNum;
+
+    }
+
+    publishBtn.addEventListener("click", addPost);
+
+    const starIcons = document.querySelectorAll('.star-icon');
+
+    starIcons.forEach(star => {
+        star.addEventListener('click', toggleStars);
+    });
+
+    function toggleStars(event) {
+        const clickedStar = event.target;
+        const allStars = Array.from(clickedStar.parentElement.children); // Get all star icons in the same container
+
+        let clickedIndex = allStars.indexOf(clickedStar);
+
+        allStars.forEach((star, index) => {
+            if (index <= clickedIndex) {
+                star.classList.remove('fa-star-o');
+                star.classList.add('fa-star');
+            } else {
+                star.classList.remove('fa-star');
+                star.classList.add('fa-star-o');
+            }
+        });
+    }
+    const likeIcon = document.getElementById("likeIcon");
+
+    likeIcon.addEventListener("click", function() {
+    // Ovdje možete dodati logiku za promjenu izgleda ikone
+    // Na primjer, možete promijeniti izvor slike ili dodati/ukloniti određene klase
+    // likeIcon.src = "../img/liked.png"; // Promijenite putanju slike prema vašim potrebama
+    console.log("ok");
+});
+
             </script>
 
 		</main>
 
 		<footer id="page-footer">UniShare</footer>
+        
+        <!-- <script type="text/javascript" src="../scripts/comments.js"></script> -->
 </body>
 </html>
