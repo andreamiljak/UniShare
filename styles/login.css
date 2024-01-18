@@ -93,3 +93,11 @@ h1{
   .register-link a:hover {
     color: #1a74a5;
   }
+
+  .pass-icon{
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    width: 20px;
+    cursor: pointer;
+  }
