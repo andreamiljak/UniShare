@@ -1,0 +1,146 @@
+.comments {
+    margin-top: 10px;
+}
+
+.comments-container {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    font-family: sans-serif;
+    width: 500px;
+    box-shadow: 0 0 3px #11435f;
+}
+
+.comments-naslov {
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #082230;
+}
+
+.text {
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+
+.commentbox {
+    display: flex;
+    justify-content: space-around;
+    /* padding: 10px; */
+    margin-top: 60px;
+}
+
+.commentbox > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* float: left; */
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.content {
+    width: 100%;
+}
+
+.user {
+    /* border: none;
+    outline: none; */
+    margin: 5px 0;
+    color: #808080;
+    /* margin-left: 20px; */
+    padding: 10px;
+    border-radius: 9px;
+    border-width: 2px;
+    border-color: #229cde;
+}
+.komentiraj{
+    padding: 0;
+    font-size: 1em;
+}
+.commentinput > input {
+    border: none;
+    padding: 10px;
+    padding-left: 0;
+    outline: none;
+    border-bottom: 1px solid;
+border-image: linear-gradient(to right, #229cde 31%, rgba(255, 255, 255, 0)) 1;
+
+    margin-bottom: 10px;
+    width: 95%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #808080;
+}
+
+.buttons > button {
+    padding: 5px 10px;
+    background: lightgrey;
+    color: #808080;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttons > button.abled {
+    background: #229cde;
+    color: #edf0f1;
+}
+
+.parents {
+    font-family: sans-serif;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.parents h1 {
+    font-size: 0.9em;
+}
+
+.parents p {
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.parents > img {  /* ikona korisnika */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.engagements {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.engagements img {
+    width: 20px;
+
+}
+
+/* .engagements img:nth-child(1) {
+    margin-right: 10px;
+    width: 25px;
+} */
+
+.date {
+    color: #808080;
+    font-size: 0.8em;
+}
+
+#like:hover{
+	transition: 0.5s;
+	cursor: pointer;
+}
