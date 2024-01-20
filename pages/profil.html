@@ -24,8 +24,7 @@
         </nav>
         <a class="odjava" href="logout.php"><button>Odjava</button></a>
     </header>
-    
-    
+
     <div class="container light-style flex-grow-1 container-p-y">
         <form id="profileForm" method="post" action="update_profile.php" enctype="multipart/form-data">
             <div class="card overflow-hidden">
@@ -47,24 +46,38 @@
                                     <img src="../img/user.png" alt="Profile Image" id="profile-preview"
                                         class="d-block ui-w-80">
                                     <div class="media-body ml-4">
-                                        <div id="file-upload-container">
-                                            <label for="file-upload">Select Image:</label>
-                                            <input type="file" id="file-upload" accept="image/*">
-                                            
-                                        </div>
-                                        <img id="uploaded-image" src="" alt="">
-
+                                        <label class="btn btn-outline-primary">
+                                            Promijeni sliku
+                                            <input type="file" name="profile_image" id="profile_image"
+                                                class="account-settings-fileinput" onchange="previewImage()">
+                                        </label> &nbsp;
+                                        <button type="button" class="btn btn-default md-btn-flat"
+                                            onclick="saveChanges()">Spremi</button>
                                     </div>
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Korisničko ime</label>
-                                        <input type="text" class="form-control mb-1" value="test" id="korisnicko_ime">
+                                        <input type="text" class="form-control mb-1" value="test">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">E-mail</label>
-                                        <input type="text" class="form-control mb-1" value="test@gmail.com" id="email">
+                                        <input type="text" class="form-control mb-1" value="test@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Fakultet</label>
+                                        <select class="form-control" name="faculty" id="faculty" onchange="loadMajors()">
+                                            <option value="" disabled selected>Odaberi fakultet</option>
+                                            <option value="fakultet1">Fakultet elektrotehnike, strojarstva i brodogradnje Split</option>
+                                            <option value="fakultet2">Prirodoslovno-matematički fakultet Split</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Smjer</label>
+                                        <select class="form-control" name="major" id="major">
+                                            <option value="" disabled selected>Odaberi smjer</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -72,15 +85,15 @@
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Trenutna lozinka</label>
-                                        <input type="password" class="form-control" id="trenutna-sifra">
+                                        <input type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Nova lozinka</label>
-                                        <input type="password" class="form-control" id="nova-sifra">
+                                        <input type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Ponovno upišite novu lozinku</label>
-                                        <input type="password" class="form-control" id="ponovljena-nova-sifra">
+                                        <input type="password" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -88,44 +101,90 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <button id="upload-button" type="button" class="btn btn-primary" >Spremi promjene</button>&nbsp;
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Spremi promjene</button>&nbsp;
                     <button type="button" class="odustani_botun">Odustani</button>
                 </div>
             </div>
         </form>
 
-        <script>
-            const fileInput = document.getElementById('file-upload');
-            const uploadButton = document.getElementById('upload-button');
-            const uploadedImage = document.getElementById('uploaded-image');
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript">
+            function previewImage() {
+                const input = document.getElementById('profile_image');
+                const preview = document.getElementById('profile-preview');
 
-            uploadButton.addEventListener('click', () => {
-                if (fileInput.files.length > 0) {
+                const file = input.files[0];
 
+                if (file) {
+                    const reader = new FileReader();
                    
-                    const file = fileInput.files[0];
-                    const formData = new FormData();
-                    const xhr = new XMLHttpRequest();
-
-                    formData.append('file', file);
-
-                    xhr.open('POST', 'update_profile.php');
-                    xhr.onload = () => {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            if (response.success) {
-                                uploadedImage.src = response.imageURL;
-                            } else {
-                                alert('Error uploading image tu');
-                            }
-                        } else {
-                            alert('Error uploading image');
-                        }
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                        preview.style.width = '80px';
+                        preview.style.height = '80px';
+                        preview.style.borderRadius = '50%';
                     };
 
-                    xhr.send(formData);
+                    reader.readAsDataURL(file);
                 }
-            });
+            }
+
+            function saveChanges() {
+                const username = document.querySelector('.form-control').value;
+                const email = document.querySelector('.form-control.mb-1').value;
+                const faculty = document.querySelector('select[name="faculty"]').value;
+                const major = document.querySelector('select[name="major"]').value;
+
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('email', email);
+                formData.append('faculty', faculty);
+                formData.append('major', major);
+                formData.append('profile_image', document.getElementById('profile_image').files[0]);
+
+                $.ajax({
+                    url: 'update_profile.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response);
+                        alert("Promene su uspešno spremljene!");
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        alert("Došlo je do greške prilikom spremanja promena.");
+                    }
+                });
+            }
+
+            function loadMajors() {
+                const facultySelect = document.getElementById('faculty');
+                const majorSelect = document.getElementById('major');
+
+                majorSelect.innerHTML = ""; 
+
+                if (facultySelect.value === 'fakultet1') {
+                    const options = ['Elektrotehnika', 'Računarstvo', 'Strojarstvo'];
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.toLowerCase();
+                        optionElement.textContent = option;
+                        majorSelect.appendChild(optionElement);
+                    });
+                } else if (facultySelect.value === 'fakultet2') {
+                    const options = ['Matematika', 'Informatika', 'Fizika'];
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.toLowerCase();
+                        optionElement.textContent = option;
+                        majorSelect.appendChild(optionElement);
+                    });
+                }
+            }
         </script>
     </div>
 </body>
