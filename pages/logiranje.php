@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $result->fetch_assoc();
             $id = $row['id'];
             $_SESSION['id'] = $id;
+            $_SESSION['lozinka'] = $lozinka;
         }
         //echo '<script>alert("Session ID: ' . $_SESSION['id'] . '");</script>';
         echo file_get_contents("materijalihub.html");
