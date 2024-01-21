@@ -3,13 +3,14 @@
 
     //Nastavak sesije
     session_start();
-    // Povezivanje na bazu podataka
 
     if (!isset($_SESSION['id'])) {
     echo '<script>alert("Korisnik nije logiran.");</script>';
     header("Location: login.html");
-    exit();
-}
+    //exit();
+    }
+
+    $id = $_SESSION['id'];
 
     $conn = new mysqli('localhost','root','','login-register');
 
@@ -18,45 +19,74 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Postavljanje i dohvaćanje podataka iz POST zahtjeva
-    $korisnicko_ime = $_POST ['korisnicko_ime'];
-	$email = $_POST ['email'];
+    //echo '<script>alert("Session ID: ' . $_SESSION['id'] . '");</script>';
 
-
-  if (isset($_POST['korisnicko_ime'])) {
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  
-    if (!empty($korisnicko_ime)) {
-      if($korisnicko_ime != $_SESSION['korisnicko_ime']){
-          $sql = "UPDATE korisnici SET korisnicko_ime='$korisnicko_ime' WHERE id=$_SESSION['id']";
-          mysqli_query($conn, $sql);
+  
+
+
+  //minjanje korisnickog imena
+  if (isset($_POST['novoKorIme']) && $_POST['novoKorIme']!="") {
+      $novoKorIme = $_POST['novoKorIme'];
+      //echo '<script>alert("Session ID: ' . $novoKorIme . '");</script>';
+      $sql = "UPDATE korisnici SET korisnicko_ime = '$novoKorIme' WHERE id = '$id'";
+      mysqli_query($conn, $sql);
       }
-    }
   }
 
-if (isset($_POST['email'])) {
-  // Validate the user's email
-  $email = trim($_POST['email']);
-  if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    // Update the user's email in the database
-    $sql = "UPDATE users SET email='$email' WHERE id=1";
-    mysqli_query($conn, $sql);
-  } else {
-    echo "Invalid email address";
-  }
-}
+  if (isset($_POST['noviEmail']) && $_POST['noviEmail']!="") {
+      $noviEmail = $_POST['noviEmail'];
+      //echo '<script>alert("Session ID: ' . $novoKorIme . '");</script>';
+      $sql = "UPDATE korisnici SET email = '$noviEmail' WHERE id = '$id'";
+      mysqli_query($conn, $sql);
+      }
+	
+  
+  $file = $_FILES['profile_image'];
+  $fileName = $file['name'];
 
-if (isset($_POST['profile_picture'])) {
-  // Upload the profile picture
-  $file = $_FILES['profile_picture'];
-  $fileName = uniqid() . '.' . $file['type'];
+  if ($fileName != ''){
+  //echo '<script>alert("Session ID: ' . $fileName . '");</script>'; 
   move_uploaded_file($file['tmp_name'], 'uploads/' . $fileName);
-
   // Update the user's profile picture in the database
-  $sql = "UPDATE users SET profile_picture='$fileName' WHERE id=1";
+  $sql = "UPDATE korisnici SET profilna='$fileName' WHERE id='$id'";
   mysqli_query($conn, $sql);
-}
+  }
+  
+  if ($_POST['trenutnaLozinka']!="" || $_POST['novaLozinka']!="" || $_POST['ponovljenaNovaLozinka']!="") {
+
+  if ($_POST['trenutnaLozinka']!="" && $_POST['novaLozinka']!="" && $_POST['ponovljenaNovaLozinka']!="") {
+      $trenutnaLozinka = $_POST['trenutnaLozinka'];
+      $novaLozinka = $_POST['novaLozinka'];
+      $ponovljenaNovaLozinka = $_POST['ponovljenaNovaLozinka'];
+
+      if ($trenutnaLozinka == $_SESSION['lozinka']){
+          if($novaLozinka === $ponovljenaNovaLozinka){
+            $sql = "UPDATE korisnici SET lozinka = '$novaLozinka' WHERE id = '$id'";
+            mysqli_query($conn, $sql);
+          }
+          else {
+              echo '<script>alert("Nova i ponovljena lozinka se ne podudaraju.");</script>';
+          }
+      }
+      else{
+          echo '<script>alert("Netočna lozinka");</script>';
+          //echo file_get_contents("profil.html");
+      }}
+   else {
+       echo '<script>alert("Fali podatak");</script>';
+       //echo file_get_contents("profil.html");
+   }
+   }
+   echo file_get_contents("profil.html");
+    
+
 
 
     // Zatvaranje veze
     $conn->close();
+
+
+   
 ?>

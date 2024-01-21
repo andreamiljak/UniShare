@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $korisnicko_ime = $_POST['korisnicko_ime'];
 
     // SQL query to fetch user_id based on username
-        $sql = "SELECT id FROM korisnici WHERE korisnicko_ime = '$korisnicko_ime'";
+        $sql = "SELECT id,profilna FROM korisnici WHERE korisnicko_ime = '$korisnicko_ime'";
     
         $result = $conn->query($sql);
     
@@ -36,8 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $row['id'];
             $_SESSION['id'] = $id;
             $_SESSION['lozinka'] = $lozinka;
+            $_SESSION['profilna']= $row['profilna'];
         }
-        //echo '<script>alert("Session ID: ' . $_SESSION['id'] . '");</script>';
+
+        //echo '<script>alert("Session ID: ' . $_SESSION['profilna'] . '");</script>';
+
         echo file_get_contents("materijalihub.html");
 
         //header("Location: materijalihub.html"); // Redirect to a dashboard page
