@@ -6,7 +6,6 @@
 
     <!-- Import this CDN to use icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    
 
     <template id="msg-template">
         <article class="msg" user-id="">
@@ -34,79 +33,79 @@
 
 
 </head>
-    <body onload="fetchData()">
-        <header>
-            <img class="logo" src="../img/logoteksttamnapoz.png" alt="logo">
-            <nav>
-                <ul class="nav_links">
-                    <li><a href="materijalihub.html">MaterijaliHub</a></li>
-                    <li><a href="chatroom.html">ChatRoom</a></li>
-                    <li><a href="help.html">PomoÄ‡</a></li>
-                    <li><a href="profil.html">Profil</a></li>
-                </ul>
-            </nav>
-            <a class="odjava" href="logout.php"><button>Odjava</button></a>
-        </header>
-        <!-- Main container  -->
-                <div class="container">
-                    <!--  Message header section starts    -->
-                    <div class="msg-header">
+<body onload="fetchData()">
+    <header>
+        <img class="logo" src="../img/logoteksttamnapoz.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="materijalihub.html">MaterijaliHub</a></li>
+                <li><a href="chatroom.html">ChatRoom</a></li>
+                <li><a href="help.html">Pomoæ</a></li>
+                <li><a href="profil.php">Profil</a></li>
+            </ul>
+        </nav>
+        <a class="odjava" href="logout.php"><button>Odjava</button></a>
+    </header>
+    <!-- Main container  -->
+    <div class="container">
+        <!--  Message header section starts    -->
+        <div class="msg-header">
 
-                        <p>Chatroom</p>
-
-
-                    </div>
+            <p>Chatroom</p>
 
 
-
-                    <!-- Message header section ends -->
-                    <!-- Chat inbox section starts -->
-
-                    <div class="chat-page">
-                        <div class="msg-inbox">
-                            <div class="chats">
-                                <div id="msg-page" class="msg-page">
-                                    
-
-                                </div>
-    </div>
-
-    <!--  Message bottom section starts -->
-                                    <div class="msg-bottom">
-                                        <div class="input-group">
-                                            <form action="ubacivanje_chatroom_poruke_u_bazu.php" method="post">
-
-                                                <div class="okvir_za_podatak">
-                                                    <input class="form-control" type="text" placeholder="Poruka" name="poruka" id="msg_text" required />
-                                                </div>
-                                                <span id="send_msg" class="input-group-text send-icon ">
-                                                    <button type="submit"><i class="bi bi-send "></i></button>
-                                                </span>
-                                            </form>
-                                        </div>
-
-
-                                        <!--<div class="input-group">
-
-            <input id="msg_text" type="text" class="form-control" action="ubacivanje_chatroom_poruke_u_bazu.php" method="post" name="poruka" placeholder="Write message...">
-            <div class="input-group-append ">
-                <span id="send_msg" class="input-group-text send-icon ">
-                    <i class="bi bi-send "></i>
-                </span>
-            </div>
         </div>
-        -->
-                                    </div>
 
 
 
-                                    <!-- Message bottom section ends. -->
-                                </div>
+        <!-- Message header section ends -->
+        <!-- Chat inbox section starts -->
+
+        <div class="chat-page">
+            <div class="msg-inbox">
+                <div class="chats">
+                    <div id="msg-page" class="msg-page">
+
+
                     </div>
                 </div>
-                <footer id="page-footer">UniShare</footer>
-                <script src="../scripts/chatroom.js"></script>
-                </body>
+
+                <!--  Message bottom section starts -->
+                <div class="msg-bottom">
+                    <div class="input-group">
+                        <form action="ubacivanje_chatroom_poruke_u_bazu.php" method="post">
+
+                            <div class="okvir_za_podatak">
+                                <input class="form-control" type="text" placeholder="Poruka" name="poruka" id="msg_text" required />
+                            </div>
+                            <span id="send_msg" class="input-group-text send-icon ">
+                                <button type="submit"><i class="bi bi-send "></i></button>
+                            </span>
+                        </form>
+                    </div>
+
+
+                    <!--<div class="input-group">
+
+                        <input id="msg_text" type="text" class="form-control" action="ubacivanje_chatroom_poruke_u_bazu.php" method="post" name="poruka" placeholder="Write message...">
+                        <div class="input-group-append ">
+                            <span id="send_msg" class="input-group-text send-icon ">
+                                <i class="bi bi-send "></i>
+                            </span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+
+
+                <!-- Message bottom section ends. -->
+            </div>
+        </div>
+    </div>
+    <footer id="page-footer">UniShare</footer>
+    <script src="../scripts/chatroom.js"></script>
+</body>
 
 
 

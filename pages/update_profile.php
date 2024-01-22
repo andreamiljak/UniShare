@@ -40,6 +40,7 @@
       //echo '<script>alert("Session ID: ' . $novoKorIme . '");</script>';
       $sql = "UPDATE korisnici SET email = '$noviEmail' WHERE id = '$id'";
       mysqli_query($conn, $sql);
+     
       }
 	
   
@@ -52,6 +53,7 @@
   // Update the user's profile picture in the database
   $sql = "UPDATE korisnici SET profilna='$fileName' WHERE id='$id'";
   mysqli_query($conn, $sql);
+  $_SESSION['profilna']=$fileName;
   }
   
   if ($_POST['trenutnaLozinka']!="" || $_POST['novaLozinka']!="" || $_POST['ponovljenaNovaLozinka']!="") {
@@ -79,9 +81,11 @@
        //echo file_get_contents("profil.html");
    }
    }
-   echo file_get_contents("profil.html");
+   //header("profil.php");
+   //echo file_get_contents("profil.php");
     
-
+   header("Location: profil.php");
+    exit; 
 
 
     // Zatvaranje veze
