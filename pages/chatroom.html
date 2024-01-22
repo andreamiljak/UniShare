@@ -1,11 +1,12 @@
 <html>
 <head>
-    <title>Chat Box UI Design</title>
+    <title>Chatroom</title>
     <link rel="stylesheet" href="../styles/chatroom.css">
 
 
     <!-- Import this CDN to use icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
 
     <template id="msg-template">
         <article class="msg" user-id="">
@@ -34,6 +35,18 @@
 
 </head>
     <body onload="fetchData()">
+        <header>
+            <img class="logo" src="../img/logoteksttamnapoz.png" alt="logo">
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="materijalihub.html">MaterijaliHub</a></li>
+                    <li><a href="chatroom.html">ChatRoom</a></li>
+                    <li><a href="help.html">Pomoć</a></li>
+                    <li><a href="profil.html">Profil</a></li>
+                </ul>
+            </nav>
+            <a class="odjava" href="logout.php"><button>Odjava</button></a>
+        </header>
         <!-- Main container  -->
                 <div class="container">
                     <!--  Message header section starts    -->
@@ -91,6 +104,7 @@
                                 </div>
                     </div>
                 </div>
+                <footer id="page-footer">UniShare</footer>
                 <script src="../scripts/chatroom.js"></script>
                 </body>
 

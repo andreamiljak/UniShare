@@ -2,7 +2,6 @@ h1{
     font-size: 26px !important;
     font-family:'Times New Roman', Times, serif;
     color: whitesmoke;
-    margin: 20px 50px;
 }
 .nav_links li a {
     text-decoration: none; 
@@ -36,6 +35,13 @@ label.btn {
     cursor: pointer;
     transition: all 0.3s ease 0s;
 
+}
+.izbrisi_profil{
+    margin-left: 25px;
+    color: #1b7db1;
+}
+.izbrisi_profil:hover{
+    text-decoration: none; 
 }
 button.btn.btn-primary:hover
 {

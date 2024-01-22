@@ -1,18 +1,24 @@
 *{
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     outline: none; 
   }
 
 .slika_uputstva {
-    width: 100%;
+    width: 30%;
     max-width: 400px;
-    transform: rotate(-10deg);
-    padding: 3%;
+    height: 30%;
+    /* transform: rotate(-10deg); */
+    padding: 50px 3%;
 }
 .okvir {
     padding: 0 3%;
     display: flex;
+    background-color: #fff;
     justify-content: space-between;
+    margin: 0 15%;
+    background-clip: padding-box;
+    box-shadow     : 9px 8px 9px  rgba(71, 85, 172, 0.779);
+    border-radius: 0.5%;;
 }
 .upute {
     flex: 1;
@@ -24,16 +30,16 @@
 .uputa_detaljno {
     width: 100%;
     padding: 1.5rem;
-    border-bottom: 1px solid rgb(175, 175, 222);
+    border-bottom: 1px solid #229cde;
 }
 
 .uputstva_podnaslov {
     display: block;
     position: relative;
     width: 100%;
-    color: #3ca4db;
+    color: #031824;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 1.2;
     cursor: pointer;
 }
@@ -56,7 +62,9 @@
     font-size: 14px;
     letter-spacing: 1;
 }
-
+.uputstva_objasnjenje li{
+    color: #146089;
+}
 .trigger {
     display: none;
 }
@@ -76,11 +84,11 @@
 
   h1 {
     color: #fff;
-    text-align: center;
-    margin: 40px 0;
-    font-size: 60px;
-    font-weight:bold;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 0 10px 20%;
+    font-size: 25px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    text-transform: uppercase;
   }
 
   ul {
