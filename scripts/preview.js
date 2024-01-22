@@ -67,10 +67,10 @@ function displayUploadedFiles() {
 
                                 document.getElementById('previewFile').innerHTML = `
                                     <button id="closeBtn">Zatvori</button>
-                                    <div class="comments-container">
-                                        <h3>${file.filename}</h3>
-                                        <div>
-                                            <p>${formattedDate}</p>
+                                    <div class="file-info-container">
+                                    <h3 class="file-title">${file.filename}</h3>
+                                    <div class="file-rating">
+                                        <p class="upload-date">${formattedDate}</p>
                                             <p>Prosječna ocjena:<span id="averageRating">0</span></p>
                                             Ocijeni:
                                             <div class="star-container" id="ratingStars">
@@ -103,6 +103,46 @@ function displayUploadedFiles() {
                                         </div>
                                     </div>
                                 `;
+                                const starIcons = document.querySelectorAll('.star-icon');
+starIcons.forEach(starIcon => {
+    starIcon.addEventListener('click', () => {
+        const rating = parseInt(starIcon.getAttribute('data-rating'), 10);
+
+        // Update the UI to reflect the selected rating
+        updateStarRatingUI(rating);
+
+        // You can also send the rating to your server for storage or further processing
+        // For now, let's assume you have a function called saveRatingToServer
+        saveRatingToServer(rating);
+    });
+});
+
+
+// Function to update the star rating UI
+function updateStarRatingUI(rating) {
+    starIcons.forEach(starIcon => {
+        const starRating = parseInt(starIcon.getAttribute('data-rating'), 10);
+        if (starRating <= rating) {
+            starIcon.classList.remove('fa-star-o');
+            starIcon.classList.add('fa-star');
+        } else {
+            starIcon.classList.remove('fa-star');
+            starIcon.classList.add('fa-star-o');
+        }
+    });
+
+    // Update the average rating in your UI
+    const averageRatingElement = document.getElementById('averageRating');
+    averageRatingElement.textContent = rating;
+}
+
+// Function to save the rating to the server (replace this with your actual server logic)
+function saveRatingToServer(rating) {
+    // Your logic to save the rating to the server goes here
+    console.log('Rating saved to server:', rating);
+}
+
+
                                 previewFile.classList.add('open');
 
                                 // Dodaj event listener za gumb "Zatvori" nakon što je prozor otvoren

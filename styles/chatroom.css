@@ -154,7 +154,7 @@ button:hover {
     border-top: 1px solid #ccc;
     position: relative;
     height: 30%;
-    background-color: #bedff0;
+    background-color: #e3e0e0;
 }
 /* Styling the input field */
 .input-group {
@@ -358,6 +358,5 @@ p {
         font-size: 28px;
     }
 }
-
 
 

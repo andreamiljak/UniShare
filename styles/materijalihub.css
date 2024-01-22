@@ -147,20 +147,32 @@ h2 .path {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Centriranje po sredini */
-    width: 750px;
+    width: 600px;
+    background-clip: padding-box;
+    box-shadow     : 9px 8px 9px  rgba(71, 85, 172, 0.5);
+    border-radius: 5%;;
     height: 750px;
     max-height: 80%; /* Maksimalna visina prozora */
     overflow-y: auto; /* Omogućuje pomicanje ako sadržaj premašuje visinu */
     background-color: #f4f4f4;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 .preview-file.open {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
 }
-
+#uploadBotun
+{
+    padding: 9px 25px;
+    margin-left: 20px;
+    background-color: #229cde;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s; 
+}
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -169,7 +181,39 @@ h2 .path {
         opacity: 1;
     }
 }
+.file-info-container {
+    text-align: center; /* Poravnavanje naslova datoteke na sredinu */
+}
 
+.file-title {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 10px; /* Dodajte malu margina ispod naslova */
+}
+
+.file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.file-rating {
+    margin-bottom: 10px; 
+}
+.comments-container {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    font-family: sans-serif;
+    width: 500px;
+    box-shadow: 0 0 3px #11435f;
+    border-radius: 5%;
+}
+
+.upload-date {
+    text-align: center;
+    color: #6b6767; 
+    margin-bottom: 20px;
+}
 #closeBtn {
     position: absolute;
     top: 10px;

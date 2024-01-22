@@ -8,10 +8,10 @@
     <link rel="icon" type="image/x-icon" href="../img/svitlilogobezbg.png">
     <link rel="icon" type="image/x-icon" href="../img/logoo.png">
     <link rel="stylesheet" type="text/css" href="../styles/materijalihub.css" />
-    <link rel="stylesheet" type="text/css" href ="../styles/comments.css"/>
     <link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href ="../styles/comments.css"/>
 </head>
 <body>
     <header>
@@ -42,9 +42,9 @@
 
                 <form id="uploadForm" method="post" enctype="multipart/form-data">
                     <!--button za odabrati dat, po potrebi dotati jos ekstenzija-->
-                    <input type="file" name="file" id="fileInput" accept=".pdf, .docx, .txt, .jpg, .jpeg, .png, .gif">
+                    <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .txt, .jpg, .jpeg, .png, .gif">
                     <!--button za upload-->
-                    <input type="button" value="Upload" onclick="uploadFile()">
+                    <input type="button" value="Upload" id = "uploadBotun" onclick="uploadFile()">
                 </form>
             </div>
             
@@ -54,9 +54,7 @@
                 <div class="comments-container">
                     <h3>ime datoteke</h3>
                     <div>
-                        <p>21.5.2023</p>
-                        <p>Prosječna ocjena:<span id="averageRating">0</span></p>
-                        Ocijeni:
+                        <p>Ocijeni: </p>
                         <div class="star-container" id="ratingStars">
                             <i class="fa fa-star-o star-icon" data-rating="1"></i>
                             <i class="fa fa-star-o star-icon" data-rating="2"></i>
@@ -64,6 +62,7 @@
                             <i class="fa fa-star-o star-icon" data-rating="4"></i>
                             <i class="fa fa-star-o star-icon" data-rating="5"></i>
                         </div>
+                        <p>Prosječna ocjena: <span id="averageRating">0</span></p>
                     </div>
                 </div>
                 <div class="comments-container">
@@ -79,7 +78,7 @@
                             <div class="commentinput">
                                 <input type="text" placeholder="Unesi komentar" class="usercomment">
                                 <div class="buttons">
-                                    <button type="button" onclick="publishComment()">Objavi</button>
+                                    <button type="submit" id="publish"onclick="publishComment()">Objavi</button>
                                 </div>
                             </div>
                         </div>
