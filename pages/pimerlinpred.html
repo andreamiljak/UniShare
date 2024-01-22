@@ -30,18 +30,16 @@
 		<main>
             <div class="folderi">
                 <!--putanja-->
-                <h2><a class="path" href="materijalihub.html">Računarstvo</a> > <a class="path" href="semestar5.html">5. Semestar</a> > 
-                    <a class="path" href="proginzinjerstvo.html">Programsko Inžinjerstvo</a> > <a class="path" href="pimerlin.html">S Merlina</a> > 
+                <h2><a class="path" href="materijalihub.html">Računarstvo</a> > 
+                    <a class="path" href="semestar5.html">5. Semestar</a> > 
+                    <a class="path" href="proginzinjerstvo.html">Programsko Inžinjerstvo</a> > 
+                    <a class="path" href="pimerlin.html">S Merlina</a> > 
                     <a class="path" href="pimerlinpred.html">Predavanja</a>
                 </h2>
-                <!--folderi tj. fileovi-->
-                <div id="file-link" class="folder">
-                    <img class="folder-ikona" src="../img/pdficon.png">
-                    <p class="folder-txt">Lekcija</p>
-                </div>
                 
                 <!--container gdje se prikazuju uploadani fileovi-->
-                <div id="uploadedFileContainer"></div> 
+                <div id="uploadedFileContainer" class="file-container"></div> 
+
                 <form id="uploadForm" method="post" enctype="multipart/form-data">
                     <!--button za odabrati dat, po potrebi dotati jos ekstenzija-->
                     <input type="file" name="file" id="fileInput" accept=".pdf, .docx, .txt, .jpg, .jpeg, .png, .gif">
@@ -54,44 +52,40 @@
             <div class="preview-file" id="previewFile">
                 <button id="closeBtn">Zatvori</button>
                 <div class="comments-container">
-                <h3>ime datoteke</h3>
-                <div>
-                    <p>21.5.2023</p>
-                    <p>Prosječna ocjena:</p>
-                    Ocijeni:
-                    <div class="star-container">
-                            <i class="fa fa-star-o star-icon"></i>
-                            <i class="fa fa-star-o star-icon"></i>
-                            <i class="fa fa-star-o star-icon"></i>
-                            <i class="fa fa-star-o star-icon"></i>
-                            <i class="fa fa-star-o star-icon"></i>
+                    <h3>ime datoteke</h3>
+                    <div>
+                        <p>21.5.2023</p>
+                        <p>Prosječna ocjena:<span id="averageRating">0</span></p>
+                        Ocijeni:
+                        <div class="star-container" id="ratingStars">
+                            <i class="fa fa-star-o star-icon" data-rating="1"></i>
+                            <i class="fa fa-star-o star-icon" data-rating="2"></i>
+                            <i class="fa fa-star-o star-icon" data-rating="3"></i>
+                            <i class="fa fa-star-o star-icon" data-rating="4"></i>
+                            <i class="fa fa-star-o star-icon" data-rating="5"></i>
+                        </div>
                     </div>
-                </div></div>
+                </div>
                 <div class="comments-container">
                     <div class = "comments-naslov">
                         <h1>Komentari</h1>
                     </div>
                     <div> Broj komentara: <span id="comment">0</span></div>
-                    <div class="comments"></div>
+                    <div class="comments" id="commentsContainer"></div>
                     <div class="commentbox">
                         <div class="content">
                             <h2 class="komentiraj">Komentiraj kao: </h2>
                             <input type="text" value="Anonymous" class="user">
-
                             <div class="commentinput">
                                 <input type="text" placeholder="Unesi komentar" class="usercomment">
                                 <div class="buttons">
-                                    <button type="submit" disabled id="publish">Objavi</button>
+                                    <button type="button" onclick="publishComment()">Objavi</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            
-
-           
-            <script src="../scripts/files.js"></script>
+            </div>
 
             <script>
                 function uploadFile() {
@@ -101,113 +95,151 @@
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4 && xhr.status === 200) {
                             // Ovdje možete manipulirati odgovorom ako je potrebno
-                            var response = xhr.responseText;
-                            document.getElementById("uploadedFileContainer").innerHTML = response;
+                            //var response = xhr.responseText;
+                            //document.getElementById("uploadedFileContainer").innerHTML = response;
+                            displayUploadedFiles();
                         }
                     };
                     
                     xhr.open('POST', 'upload.php', true);
                     xhr.send(formData);
                 }
-                
+            </script>
 
-const USERID = {
-    name: null,
-    identity: null,
-    image: null,
-    message: null,
-    date: null
-}
+            <script src="../scripts/preview.js"></script>
+            
+            <script>
+                const USERID = {
+                    name: null,
+                    identity: null,
+                    image: null,
+                    message: null,
+                    date: null
+                }
 
-const userComment = document.querySelector(".usercomment");
-const publishBtn = document.querySelector("#publish");
-const comments = document.querySelector(".comments");
-const userName = document.querySelector(".user");
-// const notify = document.querySelector(".notifyinput");
+                const userComment = document.querySelector(".usercomment");
+                const publishBtn = document.querySelector("#publish");
+                const comments = document.querySelector(".comments");
+                const userName = document.querySelector(".user");
+                // const notify = document.querySelector(".notifyinput");
 
-    userComment.addEventListener("input", e => {
-        if(!userComment.value) {
-            publishBtn.setAttribute("disabled", "disabled");
-            publishBtn.classList.remove("abled")
-        }else {
-            publishBtn.removeAttribute("disabled");
-            publishBtn.classList.add("abled")
-        }
-    })
+                    userComment.addEventListener("input", e => {
+                        if(!userComment.value) {
+                            publishBtn.setAttribute("disabled", "disabled");
+                            publishBtn.classList.remove("abled")
+                        }else {
+                            publishBtn.removeAttribute("disabled");
+                            publishBtn.classList.add("abled")
+                        }
+                    })
 
-    function addPost() {
-        if(!userComment.value) return;
-        USERID.name = userName.value;
-        if(USERID.name === "Anonymous") {
-            USERID.identity = false;
-            USERID.image = "../img/user.png";
-        }else {
-            USERID.identity = true;
-            USERID.image = "../img/user.png"
-        }
+                    function addPost() {
+                        if(!userComment.value) return;
+                        USERID.name = userName.value;
+                        if(USERID.name === "Anonymous") {
+                            USERID.identity = false;
+                            USERID.image = "../img/user.png";
+                        }else {
+                            USERID.identity = true;
+                            USERID.image = "../img/user.png"
+                        }
 
-        USERID.message = userComment.value;
-        USERID.date = new Date().toLocaleString();
-        let published = 
-        `<div class="parents">
-            <img src="${USERID.image}">
-            <div>
-                <h1>${USERID.name}</h1>
-                <p>${USERID.message}</p>
-                <div class="engagements"><img src="../img/like.png" id="likeIcon">
-                <span class="date">${USERID.date}</span>
-            </div>    
-        </div>`
-        
+                        USERID.message = userComment.value;
+                        USERID.date = new Date().toLocaleString();
+                        let published = 
+                        `<div class="parents">
+                            <img src="${USERID.image}">
+                            <div>
+                                <h1>${USERID.name}</h1>
+                                <p>${USERID.message}</p>
+                                <div class="engagements"><img src="../img/like.png" id="likeIcon">
+                                <span class="date">${USERID.date}</span>
+                            </div>    
+                        </div>`
+                        
 
-        comments.innerHTML += published;
-        userComment.value = "";
-        publishBtn.classList.remove("abled")
+                        comments.innerHTML += published;
+                        userComment.value = "";
+                        publishBtn.classList.remove("abled")
 
-        let commentsNum = document.querySelectorAll(".parents").length;
-        document.getElementById("comment").textContent = commentsNum;
+                        let commentsNum = document.querySelectorAll(".parents").length;
+                        document.getElementById("comment").textContent = commentsNum;
 
-    }
+                    }
 
-    publishBtn.addEventListener("click", addPost);
+                    publishBtn.addEventListener("click", addPost);
 
-    const starIcons = document.querySelectorAll('.star-icon');
+                    const starIcons = document.querySelectorAll('.star-icon');
 
-    starIcons.forEach(star => {
-        star.addEventListener('click', toggleStars);
-    });
+                    starIcons.forEach(star => {
+                        star.addEventListener('click', toggleStars);
+                    });
 
-    function toggleStars(event) {
-        const clickedStar = event.target;
-        const allStars = Array.from(clickedStar.parentElement.children); // Get all star icons in the same container
+                    function toggleStars(event) {
+                        const clickedStar = event.target;
+                        const allStars = Array.from(clickedStar.parentElement.children); // Get all star icons in the same container
 
-        let clickedIndex = allStars.indexOf(clickedStar);
+                        let clickedIndex = allStars.indexOf(clickedStar);
 
-        allStars.forEach((star, index) => {
-            if (index <= clickedIndex) {
-                star.classList.remove('fa-star-o');
-                star.classList.add('fa-star');
-            } else {
-                star.classList.remove('fa-star');
-                star.classList.add('fa-star-o');
-            }
-        });
-    }
-    const likeIcon = document.getElementById("likeIcon");
+                        allStars.forEach((star, index) => {
+                            if (index <= clickedIndex) {
+                                star.classList.remove('fa-star-o');
+                                star.classList.add('fa-star');
+                            } else {
+                                star.classList.remove('fa-star');
+                                star.classList.add('fa-star-o');
+                            }
+                        });
+                    }
+                    console.log('Odabrana ocjena:', rating);
 
-    likeIcon.addEventListener("click", function() {
-    // Ovdje možete dodati logiku za promjenu izgleda ikone
-    // Na primjer, možete promijeniti izvor slike ili dodati/ukloniti određene klase
-    // likeIcon.src = "../img/liked.png"; // Promijenite putanju slike prema vašim potrebama
-    console.log("ok");
-});
+                    const likeIcon = document.getElementById("likeIcon");
 
+                    likeIcon.addEventListener("click", function() {
+                    // Ovdje možete dodati logiku za promjenu izgleda ikone
+                    // Na primjer, možete promijeniti izvor slike ili dodati/ukloniti određene klase
+                    // likeIcon.src = "../img/liked.png"; // Promijenite putanju slike prema vašim potrebama
+                });
+            </script>
+            <script>
+                /*document.addEventListener('DOMContentLoaded', function () {
+                    const starIcons = document.querySelectorAll('.star-icon');
+                    const fileName = document.getElementById('fileName');
+                    const fileDate = document.getElementById('fileDate');
+
+                    starIcons.forEach(star => {
+                        star.addEventListener('click', function (event) {
+                            const clickedStar = event.target;
+                            const rating = parseInt(clickedStar.getAttribute('data-rating'));
+
+                            // Prikaz ili spremanje ocjene u bazu
+                            console.log('Ocjena:', rating);
+
+                            // Ovdje pozovite funkciju za ažuriranje ocjene u bazi podataka
+                            updateRatingInDatabase(fileName.innerText, rating);
+                        });
+                    });
+
+                    function updateRatingInDatabase(filename, rating) {
+                        // Slanje AJAX zahtjeva za ažuriranje ocjene u bazi
+                        var xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                // Uspješno ažurirano
+                                console.log('Ocjena ažurirana u bazi.');
+                            }
+                        };
+
+                        xhr.open('POST', 'update_rating.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.send('filename=' + encodeURIComponent(filename) + '&rating=' + encodeURIComponent(rating));
+                    }
+                });*/
             </script>
 
 		</main>
 
 		<footer id="page-footer">UniShare</footer>
-        
         <!-- <script type="text/javascript" src="../scripts/comments.js"></script> -->
 </body>
 </html>
