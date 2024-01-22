@@ -36,12 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Sve je u redu, pohranite datoteku
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
-            // Prikaz uploadane datoteke na stranici (s ikonom i linkom)
-            echo '<div>';
-            echo '<a href="' . $uploadedFile . '" target="_blank"><img src="../img/pdficon.png" alt="File Icon"> <br>' . basename($_FILES['file']['name']); '</a>';
-            echo '</div>';
+            // Pohrana informacija u bazu podataka
+            $filename = basename($_FILES['file']['name']);
+            $fileType = $fileType;
+            $filepath = $uploadedFile;
+            $uploadTime = date("Y-m-d");
+
+            $conn = new mysqli('localhost', 'root', '', 'login-register');
+
+            if ($conn->connect_error) {
+                die('Connection failed: ' . $conn->connect_error);
+            }
+
+            $sql = "INSERT INTO uploaded_files (filename, filetype, ocjena, filepath, uploaded_at) 
+                VALUES ('$filename', '$fileType', 0, '$filepath', '$uploadTime')";
+            $conn->query($sql);
+
+            $conn->close();
+
+            // Odmah prikazi sve uploadane datoteke
+            include 'get_uploaded_files.php';
+
+            // Samo poruka o uspješnom uploadu
+            echo 'File uploaded successfully.';
         } else {
-            echo 'Error uploading file: ' . $_FILES['file']['error'];
+            echo 'Error uploading file: ' . $_FILES['file']['error'] . '<br>';
+            echo 'Error in MySQL query: ' . $sql . '<br>' . $conn->error;
         }
     }
 }
