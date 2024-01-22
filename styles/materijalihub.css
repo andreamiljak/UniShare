@@ -1,8 +1,8 @@
-
 body {
     background-color: #24252A;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 li {
     text-decoration: none;
 }
@@ -11,7 +11,6 @@ li {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-     /*#C6D5E9*/
 }
 
 li, a, button {
@@ -93,16 +92,8 @@ h2 .path {
     font-weight: bold; 
 }
 
-/*h2 a {
-    width: 100%;
-    padding: 15px 15px;
-    display: block;
-    font-size: 1em;
-    font-weight: bold; 
-}*/
-
 .folderi {
-    background-color: #313235; /*aliceblue*/
+    background-color: #313235;
     color: #edf0f1;
     margin: 40px;
     padding: 15px;
@@ -110,6 +101,22 @@ h2 .path {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+#uploadedFileContainer { 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.file-container  { /*file*/
+    margin-bottom: 20px; /* Dodajte razmak ispod svake ikone ako želite vertikalni razmak */
+    text-align: center; /* Centrirajte tekst ispod ikone */
+}
+
+.file-container  span { /*naziv filea*/
+    display: block;
+    font-size: 14px;
 }
 
 .folder-ikona {
@@ -122,6 +129,11 @@ h2 .path {
 
 .folder {
     margin: 15px;
+}
+
+.folder span {
+    display: block;
+    margin-top: 5px; /* Razmak između ikone i teksta */
 }
 
 #file-link:hover {
